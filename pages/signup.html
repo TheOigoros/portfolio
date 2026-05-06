@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create account | login</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --bg: #fff;
+            --card: #15191d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .main-container {
+            width: 380px;
+            height: 620px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        }
+        
+        .main-container.flipped{
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--card);
+            border-radius: 30px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backface-visibility: hidden; 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        @media (max-width: 768px){
+            body {
+                padding: 20px;
+                overflow-x: none;
+                justify-items: center;
+            }
+            .card-face .front , .card-face .back
+            {
+
+                width: 70%;
+                padding-left: 10%;
+                padding-right: 10%;
+                overflow-x: hidden;
+            }
+         
+        }
+
+        .front {
+            z-index: 2;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+
+        h2 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .input-box {
+            width: 100%;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            background: #1e2329;
+            border: 1px solid transparent;
+            border-radius: 15px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 15px;
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.2);
+        }
+
+        .switch-text {
+            margin-top: auto;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .switch-link {
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(40px);
+            animation: move 10s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-100px, -100px); }
+            to { transform: translate(100px, 100px); }
+        }
+
+          p[id*="Error"], p[id*="Success"] {
+        padding: 10px; border-radius: 8px; margin: 10px 0; display: none;
+      }
+      p[id*="Error"] { background: #ff6b6b !important; color: white; }
+      p[id*="Success"] { background: #51cf66 !important; color: white; }
+      p[id*="Error"].show, p[id*="Success"].show { display: block; }
+
+         .toggle-password {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                color: var(--primary);
+          }
+            .toggle-password i {
+                    font-size: 18px;
+            }
+            .ri-eye-line, .ri-eye-off-line {
+                transition: color 0.3s;
+                float: right;
+                position: absolute;
+            }
+             .toggle-password:hover i {
+                color: var(--secondary);
+            }
+
+    </style>
+</head>
+<body>
+
+    <div class="orb"></div>
+
+    <div class="main-container" id="card">
+        <div class="card-face front">
+            <h2>Welcome back</h2>
+            <p class="subtitle">Please enter your details</p>
+            
+            <div class="input-box">
+                <i class="ri-phone-line"></i>
+                <input type="tel" id="loginPhone" placeholder="Phone Number" required>
+            </div>
+            
+            <div class="input-box">
+                <i class="ri-lock-line"></i>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                
+            </div>
+
+             <p id="loginError"></p>
+        <p id="loginSuccess"></p>
+
+            <button class="action-btn" id="loginBtn">LOGIN</button>
+
+            <p class="switch-text">
+                Don't have an account? 
+                <span class="switch-link" onclick="toggleCard()">Sign Up</span>
+            </p>
+        </div>
+
+        <div class="card-face back">
+            <h2>Create Account</h2>
+            <p class="subtitle">Join the Oigoro's</p>
+            
+            <div class="input-box">
+                <i class="ri-user-line"></i>
+                <input type="text" id="fullName" placeholder="Full Name" required>
+            </div>
+
+              <div class="input-box">
+                <i class="ri-user-line"></i>
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            <div class="input-box">
+                <i class="ri-phone-line"></i>
+                <input type="tel" id="phone" placeholder="Phone" required>
+            </div>
+
+            <div class="input-box">
+                <i class="ri-mail-line"></i>
+                <input type="tel" id="email" placeholder="Email Address" required>
+            </div>
+            
+            <div class="input-box">
+                <i class="ri-lock-line"></i>
+                <input type="password" id="password" placeholder="Password" required>
+                 
+            </div>
+
+             <div class="input-box">
+                <i class="ri-lock-line"></i>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <span id="showPassword" class="toggle-password" onclick="togglePasswordVisibility()">
+                    <i class="ri-eye-line"></i>
+                </span>
+            </div>
+
+             
+                 
+
+            
+        <p id="signupError"></p>
+        <p id="signupSuccess"></p>
+            <button class="action-btn"  id="signupBtn" >REGISTER</button>
+
+            <p class="switch-text">
+                Already a member? 
+                <span class="switch-link" onclick="toggleCard()">Log In</span>
+            </p>
+        </div>
+
+    </div>
+
+     
+       
+
+    <script>
+        function toggleCard() {
+            document.getElementById('card').classList.toggle('flipped');
+        }
+
+        
+      // Message helpers
+      const showMessage = (elementId, message, isError) => {
+        const el = document.getElementById(elementId);
+        el.textContent = message;
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), 4000);
+      };
+
+        
+      // Login validation
+      const validateLogin = () => {
+        const phone = document.getElementById('loginPhone').value.trim();
+        const password = document.getElementById('loginPassword').value;
+
+        if (!phone) {
+          showMessage('loginError', 'Phone number required', true);
+          return false;
+        }
+        if (phone.length < 9) {
+          showMessage('loginError', 'Invalid phone number', true);
+          return false;
+        }
+        if (!password) {
+          showMessage('loginError', 'Password required', true);
+          return false;
+        }
+        
+        showMessage('loginSuccess', 'Login successful! Redirecting...', false);
+        return true;
+      };
+
+      // Signup validation
+      const validateSignup = () => {
+        const username = document.getElementById('username').value.trim();
+        //const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const phone = document.getElementById('phone').value.trim();
+        //const country = document.getElementById('country').value;
+
+        if (!username) {
+          showMessage('signupError', 'Username required', true);
+          return false;
+        }
+        if (password.length < 6) {
+          showMessage('signupError', 'Password must be 6+ characters', true);
+          return false;
+        }
+      
+        if (!phone || phone.length < 9) {
+          showMessage('signupError', 'Enter valid phone number', true);
+          return false;
+        }
+        /*if (country === 'Select Country') {
+          showMessage('signupError', 'Select a country', true);
+          return false;
+        }*/
+
+        showMessage('signupSuccess', 'Registration successful!', false);
+        return true;
+       
+      };
+
+      document.getElementById('loginBtn').addEventListener('click', validateLogin);
+      document.getElementById('signupBtn').addEventListener('click', validateSignup);
+   
+         // Password visibility toggle
+          const togglePasswordVisibility = () => {
+                const passwordField = document.getElementById('password');
+                const confirmPasswordField = document.getElementById('confirmPassword');
+                const showIcon = document.querySelector('#showPassword i');
+    
+                if (passwordField.type === 'password') {
+                 passwordField.type = 'text';
+                 confirmPasswordField.type = 'text';
+                 showIcon.classList.replace('ri-eye-line', 'ri-eye-off-line');
+                } else {
+                 passwordField.type = 'password';
+                 confirmPasswordField.type = 'password';
+                 showIcon.classList.replace('ri-eye-off-line', 'ri-eye-line');
+                }
+          };
+
+          //password rejecting under confirm password
+            document.getElementById('confirmPassword').addEventListener('input', () => {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const errorEl = document.getElementById('signupError');
+    
+                if (confirmPassword && password !== confirmPassword) {
+                    errorEl.textContent = 'Passwords do not match';
+                    errorEl.classList.add('show');
+                } else {
+                    errorEl.classList.remove('show');
+                }
+            });
+
+          
+            
+     
+      
+
+    </script>
+</body>
+</html>

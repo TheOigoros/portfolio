@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>footer</title>
+</head>
+<style>
+  
+     .appName{
+        margin-left: 0.5rem;
+        font-size: 1em;
+        color: lightcoral;
+    }
+     .pgs{
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        justify-content: space-evenly;
+            margin-inline: 1rem;
+            padding: 2rem;
+    }
+     .pgs section{
+        display: block;
+    }
+     .pgs section h3{
+        font-size: 1.5em;
+        margin-bottom: 1rem;
+    }
+     .pgs section i{
+        color: lightcoral;
+    }
+     .pgs section i:hover{
+        color: white;
+    }
+     .contactInfo section i{
+        color: lightcoral;
+    }
+     .contactInfo section i:hover{
+        color: white;
+    }
+     .follow{
+        color: lightcoral;
+      
+    }
+     .follow:hover{
+        color: white;
+    }
+     .linkPages{
+        display: block;
+    }
+     .contactInfo{
+        display: block;
+    }
+     .contactInfo section h3{
+        font-size: 1.5em;
+        margin-bottom: 1rem;
+    }
+     .contactInfo section i{
+        color: lightcoral;
+    }
+     .contactInfo section i:hover{
+        color: white;
+    }
+     .contactInfo section a{
+        color: lightcoral;
+        text-decoration: none;
+    }
+     .contactInfo section a:hover{
+        color: white;
+    }
+    #pgsIcon{
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        font-size: 1.2em;
+        margin: 0.5rem 0;
+        cursor: pointer;
+    }
+    .appName{
+        margin-left: 0.5rem;
+        font-size: 1em;
+        color: lightcoral;
+    }
+    
+    
+     .pgs section h3{
+        font-size: 1.5em;
+        margin-bottom: 1rem;
+    }
+    
+     .contactInfo section i:hover{
+        color: white;
+    }
+     .follow{
+        color: lightcoral;
+      
+    }
+     .follow:hover{
+        color: white;
+    }
+     .linkPages{
+        display: block;
+        border-radius: 20px;
+        padding: 1rem;
+        box-shadow: darkorange 2px 15px 20px;
+    }
+    
+  
+    footer{
+        display: block;
+        text-align: center;
+        background-color: black;
+        color: white;
+        padding: 1rem;
+    }
+    .toggle{
+        display: none;
+        background-color: black;
+        color: white;
+        padding: 1rem;
+    }
+    .toggle p{
+        font-size: 1.2em;
+    }
+    .toggle.active{
+        display: block;
+    }
+    .toggle.active p{
+        animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    footer p span{
+        color: lightcoral;
+        cursor: pointer;
+    }
+    footer p span:hover{
+        color: white;
+    }
+    a{
+        color: lightcoral;
+        text-decoration: none;
+    }
+    .agreeRegulator{
+        color: lightcoral;
+        cursor: pointer;
+    }
+     .agreeRegulator:hover{
+        color: white;
+    }
+    a:hover{
+        color: white;
+    }
+  
+    #copyMessag
+    {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: green;
+        color: white;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    
+    @media (max-width: 600px)  {
+        footer p {
+            font-size: 0.8em;
+        }
+        .toggle p {
+            font-size: 1em;
+        }
+        .pgs {
+            display: block;
+           
+            align-items: center;
+        }
+    }
+</style>
+
+
+<body>
+    <footer>
+        <main class="pgs">
+        <div class="linkPages">
+            
+            <section>
+                <h3 class="follow">FOLLOW</h3>
+                <i id="pgsIcon" class="fab fa-facebook-f" onclick="openApp('facebook')"><span class="appName">Facebook</span></i>
+                <i id="pgsIcon" class="fab fa-instagram" onclick="openApp('instagram')"><span class="appName">Instagram</span></i>
+                <i id="pgsIcon" class="fab fa-linkedin-in" onclick="openApp('linkedin')"><span class="appName">LinkedIn</span></i>
+                <i id="pgsIcon" class="fab fa-x-twitter" onclick="openApp('twitter')"><span class="appName">Twitter</span></i>
+            </section>
+        </div>
+
+        <div class="linkPages">
+            <section>
+                <h3 class="follow">TALK TO US</h3>
+                <i id="pgsIcon" class="fab fa-whatsapp" onclick="openApp('app')"><span class="appName">Whatsapp</span></i>
+                <i id="pgsIcon" class="fab fa-telegram" onclick="openApp('app')"><span class="appName">Telegram</span></i> 
+                <i id="pgsIcon" class="fa-solid fa-phone" onclick="openApp('phone')"><span class="appName">Phone</span></i>
+                <i id="pgsIcon" class="fa-solid fa-envelope" onclick="openApp('email')"><span class="appName">Email</span></i>
+                <i id="pgsIcon" class="fa-solid fa-comments" onclick="openApp('chat')"><span class="appName">Chat</span></i>
+             </section>
+
+        </div>
+
+        <div class="linkPages">
+            <section>
+                <h3 class="follow">WATCH US</h3>
+                <i id="pgsIcon" class="fab fa-youtube" onclick="openApp('youtube')"><span class="appName">YouTube</span></i>
+                <i id="pgsIcon" class="fab fa-netflix" onclick="openApp('netflix')"><span class="appName">Netflix</span></i>
+                <i id="pgsIcon" class="fab fa-amazon" onclick="openApp('amazon')"><span class="appName">Amazon</span></i>
+                <i id="pgsIcon" class="fab fa-tiktok" onclick="openApp('tiktok')"><span class="appName">Tiktok</span></i>
+                <i id="pgsIcon" class="fab fa-twitch" onclick="openApp('twitch')"><span class="appName">Twitch</span></i>
+
+            </section>
+
+        </div>
+        
+        <div class="linkPages">
+                <section>
+                    <h3 class="follow">DOWNLOAD OUR APP</h3>
+                    <i id="pgsIcon" class="fab fa-apple" onclick="openApp('app')"><span class="appName">Apple Store</span></i>
+                    <i id="pgsIcon" class="fab fa-google-play" onclick="openApp('app')"><span class="appName">Play Store</span></i>
+                    <i id="pgsIcon" class="fab fa-samsung" onclick="openApp('app')"><span class="appName">Gallaxy Store</span></i>
+                </section>
+        </div>
+
+        <div class="linkPages">
+                <section>
+                    <h3 class="follow">WORKING HOURS</h3>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p>Saturday: 10:00 AM - 4:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </section>
+        </div>
+
+        <div class="linkPages">
+            <section>
+                <h3 class="follow">ADDRESS</h3>
+                <p>123 Main Street, Anytown, USA</p>
+                <p class="pn">Phone: (+254) 790 345 678  <i class="fa-solid fa-copy" onclick="copyText()"></i></p>
+                <p class="pn">Email: benuah694@gmail.com  <i class="fa-solid fa-copy" onclick="copyText()"></i></p>
+                </section>
+        </div>
+
+
+
+        <div class="linkPages">
+            <section>
+                <h3 class="follow">QUICK LINKS</h3>
+                <i id="pgsIcon" class="fa-solid fa-home" onclick="openApp('home')"><span class="appName">Home</span></i>
+                <i id="pgsIcon" class="fa-solid fa-info-circle" onclick="openApp('about')"><span class="appName">About</span></i>
+                <i id="pgsIcon" class="fa-solid fa-address-book" onclick="openApp('contact')"><span class="appName">Contact</span></i>
+            </section>
+        </main>
+        <span id="copyMessag">Copied successfully!</span>
+
+        <p>&copy;Oigoro`s-2023. All <span onclick="openToggle('rights')"> rights </span>reserved.</p>
+
+    
+
+    
+                
+
+    <div id="rights" class="toggle">
+        <p>All rights reserved. No part of this website may be reproduced, distributed, or transmitted in any form or by any means,
+             including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the copyright owner,
+              except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses
+               permitted by copyright law. For permission requests, please contact us at <span class="agreeRegulator" onclick="openContact()">contact information</a></span>.</p>
+    <input type="radio" name="I agree" onclick="submitAgreement()">I agree
+            </div>
+
+           </footer>
+            <script>
+                //copy number or email pn to clipboard each as per click and allert user that number has been copied with copyMessag div displayed at centre for 2 seconds
+                function copyText() {
+                    const textToCopy = document.querySelector('.pn').innerText.replace('Phone: ', '').trim();
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        const copyMessage = document.getElementById('copyMessag');
+                        copyMessage.style.display = 'block';
+                        setTimeout(() => {
+                            copyMessage.style.display = 'none';
+                        }, 2000);
+                    }).catch(err => {
+                        alert('Failed to copy text: ', err);
+                    });
+                }
+                //open html page on openApp function call
+                    function openApp(app){
+                        switch(app){
+                            case 'facebook':
+                                window.open("https://www.facebook.com/yourpage", "_blank");
+                                break;
+                            case 'instagram':
+                                window.open("https://www.instagram.com/yourpage", "_blank");
+                                break;
+                            case 'linkedin':
+                                window.open("https://www.linkedin.com/yourpage", "_blank");
+                                break;
+                            case 'twitter':
+                                window.open("https://www.twitter.com/yourpage", "_blank");
+                                break;
+                            case 'phone':
+                                window.open("tel:+1234567890");
+                                break;
+                            case 'email':
+                                window.open("mailto:your-email@example.com");
+                                break;
+                            case 'chat':
+                                window.open("https://www.yourwebsite.com/chat", "_blank");
+                                break;
+                            case 'home':
+                                window.location.href = "../index.html";
+                                break;
+                            case 'about':
+                                window.location.href = "../pages/about.html";
+                                break;
+                            case 'contact':
+                                window.location.href = "../pages/contact.html";
+                                break;
+                            default:
+                                alert("App not found");
+                        }
+                    }
+             
+
+                 function openToggle(id){
+        const toggle = document.getElementById(id);
+        toggle.classList.toggle('active');
+    }
+                function openContact(){
+                    window.location.href = "../pages/contact.html";
+                }
+
+                //dont open contact.html until agreement radio is checked
+                function openContact(){
+                    const radio = document.querySelector('input[type="radio"][name="I agree"]');
+                    if(radio.checked){
+                        window.location.href = "../pages/contact.html";
+                    }
+                    else{
+                       confirm("Please agree to the terms and conditions to access the contact page.");
+                    }
+                }
+
+                /*
+
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.body.style.backgroundColor = 'black';
+                    document.body.style.color = 'white';
+                }
+                else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    document.body.style.backgroundColor = 'white';
+                    document.body.style.color = 'black';
+                }
+                else {
+                    document.body.style.backgroundColor = 'white';
+                    document.body.style.color = 'black';
+                }
+               
+*/
+
+
+                //synch agreeRegulator with radio button on click should not load until agreement checked
+            function agreeRegulator(){
+                const radio = document.querySelector('input[type="radio"][name="I agree"]');
+                if(radio.checked){
+                    alert("Thank you for agreeing to the terms and conditions. You can now access the website's features and content.");
+                }
+                else{
+                    alert("Please agree to the terms and conditions to access the website's features and content.");
+                }
+            }
+             function submitAgreement(){
+                const radio = document.querySelector('input[type="radio"][name="I agree"]');
+                if(radio.checked){
+                    alert("Thank you for agreeing to the terms and conditions. You can now access the website's features and content.");
+                }
+                else{
+                    alert("Please agree to the terms and conditions to access the website's features and content.");
+                }
+            }
+                
+            //copy number pn to clipboard and allert user that number has been copied with a generated div displayed at centre
+            function copyText() {
+                const textToCopy = document.querySelector('.pn').innerText.replace('Phone: ', '').trim();
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    alert('Phone number copied to clipboard: ' + textToCopy);
+                }).catch(err => {
+                    alert('Failed to copy text: ', err);
+                });
+            }
+
+            
+            </script>
+            <script src="../js/main.js"></script>
+
+
+           
+</body>
+</html>

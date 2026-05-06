@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benuah • Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg: #0d001a;
+      --text: #e0d0ff;
+      --accent: #a78bfa;
+      --glass: rgba(40, 20, 80, 0.25);
+      --blur: blur(16px);
+      --border: rgba(120, 80, 200, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #0d001a, #1a0033);
+    }
+
+    /* Floating Shapes */
+    .shapes {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(45deg, rgba(167,139,250,0.15), rgba(236,72,153,0.1));
+      backdrop-filter: blur(4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      animation: float 18s infinite ease-in-out;
+    }
+
+    .shape:nth-child(1) { width: 220px; height: 220px; top: 12%; left: 8%; animation-delay: 0s; }
+    .shape:nth-child(2) { width: 160px; height: 160px; top: 45%; right: 10%; animation-delay: 4s; border-radius: 38% 62% 41% 59%; }
+    .shape:nth-child(3) { width: 140px; height: 140px; bottom: 15%; left: 18%; animation-delay: 8s; }
+    .shape:nth-child(4) { width: 180px; height: 180px; top: 28%; right: 22%; animation-delay: 12s; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(236,72,153,0.15)); }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-40px) rotate(10deg); }
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(13,0,26,0.6);
+      backdrop-filter: var(--blur);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #c084fc, #ec4899);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin: 0 1.2rem;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+    }
+
+    .search-bar input {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      outline: none;
+      width: 180px;
+      font-size: 0.95rem;
+    }
+
+    .search-bar i {
+      color: var(--accent);
+      margin-right: 0.6rem;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 5%;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .hero h1 {
+      font-size: 4.2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #c084fc, #ec4899, #a78bfa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #a78bfa, #ec4899);
+      color: white;
+      padding: 0.9rem 2.2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(167,139,250,0.4);
+    }
+
+    section {
+      padding: 8rem 5%;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 4rem;
+      background: linear-gradient(90deg, #c084fc, #ec4899);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .project-info {
+      padding: 1.8rem;
+    }
+
+    .project-info h3 {
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+    }
+
+    /* Sign Up Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+
+    .modal-content {
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem;
+      width: 90%;
+      max-width: 480px;
+      text-align: center;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--accent);
+    }
+
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .modal input {
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      color: white;
+      font-size: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3rem; }
+      .hero p { font-size: 1.2rem; }
+      nav { display: none; } /* You can add hamburger later */
+      .search-bar input { width: 140px; }
+      section { padding: 6rem 4%; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content { padding: 3rem 1.5rem; }
+      .hero h1 { font-size: 2.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <header>
+    <div class="logo">Benuah</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search projects..."/>
+    </div>
+  </header>
+  
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Hello, I'm Benuah</h1>
+      <p>Frontend Developer & Creative Coder crafting modern digital experiences with passion.</p>
+      <button class="btn" onclick="document.getElementById('signupModal').style.display='flex'">Sign Up for Updates</button>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>My Skills</h2>
+    <div class="projects-grid" id="projectsGrid">
+      <div class="project-card">
+        <img src="../assets/images/proj-img.html" alt="Project 1"/>
+        <div class="project-info">
+          <h3>Projects at glace!</h3>
+          <p>All skills incorporated</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="../assets/images/java2-img_files/glowing-computer-code-with-blue-orange-light-streaks-1_1107171-11240(1).jpg" alt="Project 2"/>
+        <div class="project-info">
+          <h3>Java</h3>
+          <p> • Interactive floating shapes & zoom</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="../assets/images/css3-img_files/glowing-computer-code-with-blue-orange-light-streaks-1_1107171-11240(1).jpg" alt="Project 3"/>
+        <div class="project-info">
+          <h3>CSS</h3>
+          <p>Pure CSS • Modern components collection</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" alt="Project 4"/>
+        <div class="project-info">
+          <h3>AI Chat Interface</h3>
+          <p>Next.js • Real-time messaging & animations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sign Up Modal -->
+  <div class="modal" id="signupModal">
+    <div class="modal-content">
+      <span class="close" onclick="document.getElementById('signupModal').style.display='none'">&times;</span>
+      <h2>Join the Journey</h2>
+      <p>Sign up to get updates on new projects & tips.</p>
+      <form>
+        <input type="text" placeholder="Your Name" required/>
+        <input type="email" placeholder="Email Address" required/>
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Working Search Bar (filters project cards)
+    const searchInput = document.getElementById('searchInput');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      projectCards.forEach(card => {
+        
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const desc = card.querySelector('p').textContent.toLowerCase();
+        card.style.display = (title.includes(term) || desc.includes(term)) ? '' : 'none';
+      });
+    });
+
+    // Optional: close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('signupModal');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

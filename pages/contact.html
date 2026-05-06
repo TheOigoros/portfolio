@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+</head>
+<style>
+    .body{
+        display: block;
+        gap: 4rem;
+        justify-content: center;
+        justify-items: center;
+       width: 100%;
+        overflow-x: hidden;
+        padding: 2px;
+        background-image: url(../assets/images/professional-programmer-working-late-dark-office_1098-18705.jpg);
+    }
+
+     
+        .box
+        {
+            display: flex;
+        }
+        .box .inner
+        {
+            width: 500px;
+            height: 200px;
+            line-height: 200px;
+            font-size: 4em;
+            font-family: sans-serif;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+           
+           
+        }
+        .box .inner:first-child
+        {
+           background-color: indianred;
+           color: rgba(60 , 2,2);
+           box-shadow: black 2px 15px 20px;
+           transform-origin: right;
+           transform:perspective(100px) rotateY(-15deg);
+        }
+            .box .inner:last-child
+            {
+            background-color: lightcoral;
+            color: rgba(245, 216, 179);
+            box-shadow: black 2px 15px 20px;
+            transform-origin: left;
+            transform:perspective(100px) rotateY(15deg);
+            }
+        .box .inner span{
+            position: absolute;
+                animation: animate 5s linear infinite;
+        }
+        .box .inner:first-child span
+        {
+            animation-delay: 2.5s;
+            left: -100%;
+        }
+        @keyframes animate
+        {
+            from
+            {
+               left: 100%;
+            }
+            to
+            {
+                left: -100%;
+            }
+        }
+
+    .bBox
+
+    {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 4rem;
+        max-width: 90%;
+
+
+    }
+    .main-heroIntro
+    {
+        
+        gap: 4rem;
+        width: 100%;
+        background-color: lavender;
+    }
+    .organize-apps
+    {
+        display: flex;
+        flex-wrap: nowrap;
+        max-height: 200px;
+        min-height: 100px;
+        gap: 20rem;
+    }
+    .icon
+    {
+        width: 60%;
+        justify-content: center;
+        position: relative;
+    }
+    .imgs
+    {
+        border-radius: 50%;
+        width: 90%;
+        height: 90%;
+        font-size: 82px;
+        position: absolute;
+        margin: auto;
+    }
+    .appContent
+    
+    {
+        width: 60%;
+        justify-content: center;
+    }
+    @media (max-width:768px)
+     {
+        .bBox
+        {
+            grid-template-columns: repeat(1,1fr);
+            margin: auto;
+            max-width: 70%;
+        }
+        
+    }
+     @media (min-width:1368px) {
+        .bBox
+        {
+            grid-template-columns: repeat(2,1fr);
+            margin: auto;
+            width: 60%;
+        }
+         .organize-apps
+         {
+            width: 100%;
+         }
+        .body
+        {
+            width: 100%;
+        }
+    }
+</style>
+<body class="body">
+    <div class="box">
+    <div class="inner">
+      <span>Hello, I'm Benuah</span>
+
+    </div>
+    <div class="inner">
+      <span>A Frontend Developer .</span>
+
+    </div>
+
+  </div>
+
+    <main class="bBox">
+
+    <div class="main-heroIntro" >
+        <div class="organize-apps">
+        <section class="icon" onclick="alert('coming soon!')"><img class="imgs" src="../assets/images/whatsapp.jpg"/></section>
+        <section class="appContent">chat us now</section>
+        </div>
+    </div>
+
+     <div class="main-heroIntro" >
+        <div class="organize-apps">
+        <section class="icon" onclick="alert('coming soon!')"><img class="imgs" src="../assets/images/facebook.jpg"/></section>
+        <section class="appContent">chat us now</section>
+        </div>
+    </div>
+
+    <div class="main-heroIntro" >
+        <div class="organize-apps">
+        <section class="icon" onclick="alert('coming soon!')"><img class="imgs" src="../assets/images/ig.jpg"/></section>
+        <section class="appContent">chat us now</section>
+        </div>
+    </div>
+
+     <div class="main-heroIntro" >
+        <div class="organize-apps">
+        <section class="icon" onclick="alert('coming soon!')"><img class="imgs" src="../assets/images/whatsapp.jpg"/></section>
+        <section class="appContent">chat us now</section>
+        </div>
+    </div>
+
+
+
+
+    </main>
+
+<script src="../js/main.js"></script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" class="html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .html,
+        .body{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url(../assets/friday.jpg);
+
+        }
+        .box
+        {
+            display: flex;
+        }
+        .box .inner
+        {
+            width: 500px;
+            height: 200px;
+            line-height: 200px;
+            font-size: 4em;
+            font-family: sans-serif;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+           
+           
+        }
+        .box .inner:first-child
+        {
+           background-color: indianred;
+           color: rgba(60 , 2,2);
+           box-shadow: black 2px 15px 20px;
+           transform-origin: right;
+           transform:perspective(100px) rotateY(-15deg);
+        }
+            .box .inner:last-child
+            {
+            background-color: lightcoral;
+            color: rgba(245, 216, 179);
+            box-shadow: black 2px 15px 20px;
+            transform-origin: left;
+            transform:perspective(100px) rotateY(15deg);
+            }
+        .box .inner span{
+            position: absolute;
+                animation: animate 5s linear infinite;
+        }
+        .box .inner:first-child span
+        {
+            animation-delay: 2.5s;
+            left: -100%;
+        }
+        @keyframes animate
+        {
+            from
+            {
+               left: 100%;
+            }
+            to
+            {
+                left: -100%;
+            }
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="box">
+    <div class="inner">
+      <span>Hello, I'm Benuah</span>
+
+    </div>
+    <div class="inner">
+      <span>A Frontend Developer .</span>
+
+    </div>
+
+  </div>
+</body>
+</html>

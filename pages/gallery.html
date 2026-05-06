@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benuah Gallery — Modern Portfolio</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --text: #e0e0e0;
+      --accent: #00d4ff;
+      --card: #1a1a1a;
+      --border: #333;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background: rgba(15,15,15,0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+    main { padding-top: 80px; padding-bottom: 40px; }
+
+    /* Featured Slider */
+    .featured-slider {
+      margin: 30px 0;
+      overflow: hidden;
+      position: relative;
+      height: 400px;
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.25,0.8,0.25,1);
+      height: 100%;
+    }
+    .slide {
+      flex: 0 0 80%;
+      max-width: 900px;
+      margin: 0 10px;
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      position: relative;
+    }
+    .slide img, .slide video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .slide-caption {
+      position: absolute; bottom: 20px; left: 20px; right: 20px;
+      background: rgba(0,0,0,0.6); padding: 12px; border-radius: 12px;
+    }
+
+    /* Rating Slider */
+    .rating-section {
+      margin: 50px 0;
+      padding: 0 20px;
+    }
+    .rating-slider {
+      overflow: hidden;
+      position: relative;
+    }
+    .rating-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 20px;
+      padding: 20px 0;
+    }
+    .rating-card {
+      flex: 0 0 300px;
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      cursor: grab;
+    }
+    .rating-card:active { cursor: grabbing; }
+    .rating-media {
+      height: 200px; overflow: hidden;
+    }
+    .rating-media img, .rating-media video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .rating-info { padding: 15px; }
+    .stars { margin: 10px 0; font-size: 1.4rem; cursor: pointer; }
+    .star { color: #555; transition: color 0.2s; }
+    .star.active { color: #ffd700; }
+
+    /* Masonry Gallery */
+    .gallery {
+      columns: 300px 3;
+      column-gap: 16px;
+      padding: 20px;
+    }
+    .item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .item:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(0,212,255,0.15); }
+    .item img, .item video {
+      width: 100%; height: auto; display: block;
+    }
+    .item-info { padding: 12px; font-size: 0.9rem; }
+
+    /* Modal */
+    .modal {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.95);
+      display: none; align-items: center; justify-content: center;
+      z-index: 2000; padding: 20px;
+    }
+    .modal-content {
+      max-width: 90vw; max-height: 90vh;
+      background: var(--card); border-radius: 16px; overflow: hidden;
+      position: relative;
+    }
+    .modal-media { max-height: 70vh; overflow: hidden; }
+    .modal-media img, .modal-media video { width: 100%; height: auto; }
+    .modal-info { padding: 20px; }
+    .close-btn {
+      position: absolute; top: 15px; right: 20px;
+      background: rgba(0,0,0,0.6); color: white;
+      border: none; border-radius: 50%; width: 40px; height: 40px;
+      font-size: 1.4rem; cursor: pointer;
+    }
+
+    /* Samsung-style full view (triggered on first item) */
+    .samsung-view {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      z-index: 1500;
+      display: none;
+      overflow: hidden;
+    }
+    .samsung-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s cubic-bezier(0.22,0.61,0.36,1);
+      touch-action: pan-y;
+    }
+    .s-view-card {
+      flex: 0 0 100vw;
+      height: 100%;
+      position: relative;
+      background: var(--card);
+    }
+    .s-view-media {
+      width: 100%; height: 70%; object-fit: contain; background: black;
+    }
+    .s-view-info { padding: 20px; }
+
+    @media (max-width: 768px) {
+      .gallery { columns: 180px 2; }
+      .featured-slider { height: 300px; }
+      .slide { flex: 0 0 90%; }
+      .rating-card { flex: 0 0 85vw; }
+    }
+    @media (max-width: 500px) {
+      .gallery { columns: 100%; }
+      nav { height: 50px; }
+      .logo { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Benuah Airways</div>
+</nav>
+
+<main>
+
+  <!-- Featured Slider -->
+  <div class="featured-slider">
+    <div class="slider-track" id="featuredTrack"></div>
+  </div>
+
+  <!-- Rating Slider -->
+  <section class="rating-section">
+    <h2 style="text-align:center; margin-bottom:20px;">Rate These Pieces</h2>
+    <div class="rating-slider">
+      <div class="rating-track" id="ratingTrack"></div>
+    </div>
+  </section>
+
+  <!-- Main Gallery -->
+  <div class="gallery" id="gallery"></div>
+
+</main>
+
+<!-- Detail Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <div class="modal-media" id="modalMedia"></div>
+    <div class="modal-info" id="modalInfo"></div>
+  </div>
+</div>
+
+<!-- Samsung-style full view (only for first item) -->
+<div class="samsung-view" id="sView">
+  <div class="samsung-track" id="sTrack"></div>
+</div>
+
+<script>
+//  Your portfolio items — add as many as you want 
+const mediaItems = [
+  { type: "image", src: "/project-4/assets/sofa.jpg", title: "Abstract Flow", desc: "Digital painting, 2025. Vibrant motion study." },
+  { type: "video", src: "/project-4/assets/videos/WhatsApp Video 2026-03-05 at 10.03.51 AM.mp4", title: "Urban Pulse", desc: "Short cinematic loop, 4K." },
+  { type: "image", src: "/project-4/assets/friday.jpg", title: "Neon Dream", desc: "Cyberpunk cityscape, neon edition." },
+  { type: "image", src: "/project-4/assets/cat+shopping.jpg", title: "Minimal Portrait", desc: "Black & white series." },
+  { type: "video", src: "/project-4/assets/videos/WhatsApp Video 2026-03-05 at 10.03.51 AM.mp4", title: "Nature Drift", desc: "Aerial drone footage." },
+  { type: "image", src: "/project-4/assets/sofa.jpg", title: "Abstract Flow", desc: "Digital painting, 2025. Vibrant motion study." },
+  { type: "video", src: "/project-4/assets/videos/WhatsApp Video 2026-03-05 at 10.03.51 AM.mp4", title: "Urban Pulse", desc: "Short cinematic loop, 4K." },
+  { type: "image", src: "/project-4/assets/friday.jpg", title: "Neon Dream", desc: "Cyberpunk cityscape, neon edition." },
+  { type: "image", src: "/project-4/assets/cat+shopping.jpg", title: "Minimal Portrait", desc: "Black & white series." },
+  { type: "video", src: "/project-4/assets/videos/WhatsApp Video 2026-03-05 at 10.03.51 AM.mp4", title: "Nature Drift", desc: "Aerial drone footage." },
+  { type: "image", src: "/project-4/assets/sofa.jpg", title: "Abstract Flow", desc: "Digital painting, 2025. Vibrant motion study." },
+  { type: "video", src: "/project-4/assets/videos/WhatsApp Video 2026-03-05 at 10.03.51 AM.mp4", title: "Urban Pulse", desc: "Short cinematic loop, 4K." },
+  { type: "image", src: "/project-4/assets/friday.jpg", title: "Neon Dream", desc: "Cyberpunk cityscape, neon edition." },
+  { type: "image", src: "/project-4/assets/cat+shopping.jpg", title: "Maximum Port", desc: "Black & white series." },
+  { type: "video", src: "/project-4/assets/videos/WhatsApp Video 2026-03-05 at 10.03.51 AM.mp4", title: "Nature Drift", desc: "Aerial drone footage." }
+
+
+];
+
+// Populate featured slider (first 3 items)
+const featuredTrack = document.getElementById("featuredTrack");
+mediaItems.slice(0,3).forEach(item => {
+  const slide = document.createElement("div");
+  slide.className = "slide";
+  slide.innerHTML = `
+    ${item.type === "image" ? `<img src="${item.src}" alt="${item.title}">` : `<video src="${item.src}" autoplay loop muted playsinline></video>`}
+    <div class="slide-caption">${item.title}</div>
+  `;
+  slide.onclick = () => openModal(item);
+  featuredTrack.appendChild(slide);
+});
+
+// Populate rating slider
+const ratingTrack = document.getElementById("ratingTrack");
+mediaItems.forEach((item, idx) => {
+  const card = document.createElement("div");
+  card.className = "rating-card";
+  card.innerHTML = `
+    <div class="rating-media">
+      ${item.type === "image" ? `<img src="${item.src}" alt="${item.title}">` : `<video src="${item.src}" loop muted playsinline></video>`}
+    </div>
+    <div class="rating-info">
+      <h3>${item.title}</h3>
+      <div class="stars" data-idx="${idx}">
+        <span class="star" data-val="1">★</span>
+        <span class="star" data-val="2">★</span>
+        <span class="star" data-val="3">★</span>
+        <span class="star" data-val="4">★</span>
+        <span class="star" data-val="5">★</span>
+      </div>
+      <p>${item.desc}</p>
+    </div>
+  `;
+  ratingTrack.appendChild(card);
+});
+
+// Star rating logic
+ratingTrack.addEventListener("click", e => {
+  if (!e.target.classList.contains("star")) return;
+  const stars = e.target.parentElement.children;
+  const val = +e.target.dataset.val;
+  for (let s of stars) {
+    s.classList.toggle("active", +s.dataset.val <= val);
+  }
+});
+
+// Populate main gallery
+const gallery = document.getElementById("gallery");
+mediaItems.forEach((item, idx) => {
+  const el = document.createElement("div");
+  el.className = "item";
+  el.innerHTML = `
+    ${item.type === "image" ? `<img src="${item.src}" alt="${item.title}">` : `<video src="${item.src}" loop muted playsinline></video>`}
+    <div class="item-info">${item.title}</div>
+  `;
+  el.onclick = () => {
+    if (idx === 0) {
+      activateSamsungView(item, idx);
+    } else {
+      openModal(item);
+    }
+  };
+  gallery.appendChild(el);
+});
+
+// Modal
+const modal = document.getElementById("modal");
+function openModal(item) {
+  const media = document.getElementById("modalMedia");
+  const info = document.getElementById("modalInfo");
+  media.innerHTML = item.type === "image" 
+    ? `<img src="${item.src}" alt="${item.title}">`
+    : `<video src="${item.src}" controls autoplay></video>`;
+  info.innerHTML = `<h2>${item.title}</h2><p>${item.desc}</p>`;
+  modal.style.display = "flex";
+}
+function closeModal() { modal.style.display = "none"; }
+
+// Samsung-style view (only for first item)
+let isSamsungActive = false;
+const sView = document.getElementById("sView");
+const sTrack = document.getElementById("sTrack");
+
+function activateSamsungView(item, startIdx) {
+  sTrack.innerHTML = ""; // clear
+  // Duplicate items in a loop-like feel (can extend)
+  mediaItems.forEach(it => {
+    const card = document.createElement("div");
+    card.className = "s-view-card";
+    card.innerHTML = `
+      ${it.type === "image" ? `<img class="s-view-media" src="${it.src}" alt="${it.title}">` : `<video class="s-view-media" src="${it.src}" autoplay loop muted playsinline></video>`}
+      <div class="s-view-info">
+        <h2>${it.title}</h2>
+        <p>${it.desc}</p>
+      </div>
+    `;
+    sTrack.appendChild(card);
+  });
+  sView.style.display = "block";
+  isSamsungActive = true;
+  document.body.style.overflow = "hidden";
+
+  let startX = 0, currentX = 0, prevTranslate = 0, translate = 0;
+  let animationID;
+
+  function touchStart(e) {
+    startX = getPositionX(e);
+    sTrack.style.transition = "none";
+    cancelAnimationFrame(animationID);
+  }
+
+  function touchMove(e) {
+    if (!isSamsungActive) return;
+    currentX = getPositionX(e);
+    const diff = currentX - startX;
+    translate = prevTranslate + diff;
+    setSliderPosition();
+  }
+
+  function touchEnd() {
+    if (!isSamsungActive) return;
+    const movedBy = currentX - startX;
+    if (movedBy < -100) {
+      // swipe left → next (move track left = negative translate)
+      prevTranslate -= window.innerWidth;
+    } else if (movedBy > 100) {
+      prevTranslate += window.innerWidth;
+    }
+    sTrack.style.transition = "transform 0.5s cubic-bezier(0.22,0.61,0.36,1)";
+    setSliderPosition();
+
+    // If scrolled back near start → exit
+    if (prevTranslate > -50) {
+      exitSamsungView();
+    }
+  }
+
+  function setSliderPosition() {
+    sTrack.style.transform = `translateX(${translate}px)`;
+  }
+
+  function getPositionX(e) {
+    return e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
+  }
+
+  sTrack.addEventListener("touchstart", touchStart);
+  sTrack.addEventListener("touchmove", touchMove);
+  sTrack.addEventListener("touchend", touchEnd);
+  sTrack.addEventListener("mousedown", touchStart);
+  sTrack.addEventListener("mousemove", touchMove);
+  sTrack.addEventListener("mouseup", touchEnd);
+  sTrack.addEventListener("mouseleave", touchEnd);
+
+  // Click anywhere to exit (or add back button)
+  sView.addEventListener("click", e => {
+    if (e.target === sView) exitSamsungView();
+  });
+}
+
+function exitSamsungView() {
+  sView.style.display = "none";
+  isSamsungActive = false;
+  document.body.style.overflow = "";
+  sTrack.innerHTML = "";
+}
+
+// Optional: auto-slide featured (pause on hover)
+let slideInterval = setInterval(() => {
+  // simple auto for demo — you can enhance
+}, 5000);
+
+  </script>
+</body>
+</html>

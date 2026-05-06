@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+   
+    <title>donate</title>
+    <style>
+        #footer
+        {
+            width: 100%;
+        }
+        body{
+            display: block;
+            gap: 4rem;
+            justify-content: center;
+            justify-items: center;
+           width: 100%;
+            overflow-x: hidden;
+            padding: 2px;
+            background-image: url(../assets/images/professional-programmer-working-late-dark-office_1098-18705.jpg);
+        }
+        h1{
+            font-size: 3em;
+            color: lightcoral;
+        }
+        p{
+            font-size: 1.5em;
+            color: white;
+            max-width: 600px;
+        }
+        .donateButton button{
+            padding: 1rem 2rem;
+            font-size: 1.5em;
+            color: white;
+            background-color: lightcoral;
+            border: none;
+            border-radius: 5px;
+            animation: hoverEffect 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .donateButton button:hover{
+            background-color: white;
+            color: lightcoral;
+        }
+        @keyframes hoverEffect {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .donated{
+            display: none;
+            gap: 2rem;
+            margin-top: 2rem;
+            min-width: 90%;
+            max-width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        .donated section{
+            display: block;
+            gap: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            max-width: 400px;
+            height: auto;
+        }
+        .donate-app{
+            font-size: 1.5em;
+            color: lightcoral;
+        }
+        .donate-img{
+            width: 100%;
+            height: auto;
+        }
+        .donated section div{
+             font-size: 1em;
+             color: lightcoral;
+        }
+        .donated section div span{
+            color: white;
+            cursor: pointer;
+        }
+        .donated section div span:hover{
+            color: lightcoral;
+        }
+            .donated section div i{
+                margin-left: 0.5rem;
+                cursor: pointer;
+            }
+            .donated section div i:hover{
+                color: lightcoral;
+            }
+            .binance , .okx , .paypal , .m-pesa
+            {
+                position: relative;
+                max-width: 600px;
+                max-height: 500px;
+                min-height: 400px;
+                min-width: 300px;
+                height: auto;
+            }
+            .donate-img
+            {
+               
+                width: 90%;
+                height: 85%;
+                justify-content: center;
+
+                font-size: 82px;
+                position: absolute;
+                margin: auto;
+                animation: heartbeat 5s ease-in-out infinite;
+            }
+                @keyframes heartbeat {
+                    0%, 100% {
+                        transform: scale(1);
+                    }
+                    50% {
+                        transform: scale(1.1);
+                    }
+                }
+                .donate-img:hover
+                {
+                    transform: scale(1.05);
+                    transition: transform 0.3s ease-in-out;
+                }
+                .donate-img:hover
+                {
+                    transform: scale(1.05);
+                    transition: transform 0.3s ease-in-out;
+                }
+            .donate-img:hover
+            {
+                transform: scale(1.05);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .payCode
+            {
+                position:absolute;
+                bottom: 0px;
+                background-image: url(../assets/images/programmer-night_23-2151948231.jpg);
+                border-radius: 20px;
+                color: black;
+                z-index: 1000;
+                text-align: center;
+                animation: twinkle 0.5s ease-in-out infinite;
+            }
+            @keyframes twinkle {
+                0%, 100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.5;
+                }
+            }
+            .close-copied
+            {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                background-color: lightcoral;
+                color: white;
+                padding: 0.5rem;
+                border-radius: 5px;
+                cursor: pointer;
+                
+              
+
+            }
+        
+
+            .successCopy
+            {
+                display: none;
+                position: absolute;
+               align-self: center;
+                transform: translate(-50%, -50%);
+                background-image:url(../assets/images/professional-programmer-working-late-dark-office_1098-18705.jpg);
+                color: white;
+                padding: 1rem;
+                border-radius: 5px;
+                z-index: 1000;
+                font-weight: 700;
+                             }
+
+    .allPayApps
+    {        display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+            justify-items: center;
+    }
+             /* Responsive design for smaller screens */
+     @media (max-width: 768px) {
+        body{
+            padding: 1rem;
+        }
+        h1{
+            font-size: 2em;
+        }
+        p{
+            font-size: 1.2em;
+            max-width: 80%;
+        }
+        .donateButton button{
+            font-size: 1.2em;
+            padding: 0.8rem 1.5rem;
+        }
+        .donated{
+            gap: 1rem;
+             display: block;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+        
+        .donated section{
+            max-width: 100%;
+        }
+        .donate-app{
+            font-size: 1.2em;
+        }
+        .donate-img{
+            width: 100%;
+            height: auto;
+        }
+        .donated section div{
+             font-size: 0.9em;
+             color: lightcoral;
+        }
+        .donated section div span{
+            color: white;
+            cursor: pointer;
+        }
+        .donated section div span:hover{
+            color: lightcoral;
+        }
+            .donated section div i{
+                margin-left: 0.5rem;
+                cursor: pointer;
+            }
+            .donated section div i:hover{
+                color: lightcoral;
+            }
+            .binance , .okx
+            {
+                position: relative;
+                max-width: 100%;
+                height: auto;
+            }
+                .successCopy
+                {
+                    font-size: 1em;
+                }
+                .allPayApps
+                {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        
+
+
+
+
+    </style>
+</head>
+<body>
+    <h1>Donate to our cause</h1>
+    <p>Your support can make a difference! Consider donating to help us continue our mission and make a positive impact in the community. Every contribution, big or small, helps us achieve our goals and create meaningful change.
+         Thank you for your generosity!
+        </p>
+        <div class="donateButton" onclick="openApp()">
+            <button >Donate Now</button>
+    </div>
+    <div class="donated">
+
+<div class="allPayApps">
+
+        <section class="binance">
+            <h2 class="donate-app">BINANCE</h2>
+            <div class="donate-img" ><img class="donate-img" src="../assets/images/binance.jpg"></i></div>
+            <div class="payCode"> THT7LN5zugFiV4Z58KUYXvAnbeFhiuipvm<i class="fas fa-copy"></i></div>
+           </section>
+
+           <section class="okx">
+            <h2 class="donate-app">BINANCE</h2>
+            <div class="donate-img"><img class="donate-img" src="../assets/images/binance.jpg"></i></div>
+            <div class="payCode"> THT7LN5zugFiV4Z58KUYXvAnbeFhiuipvm<i class="fas fa-copy"></i></div>
+            </section>
+
+          <section class="paypal">
+            <h2 class="donate-app">BINANCE</h2>
+            <div class="donate-img"><img class="donate-img" src="../assets/images/binance.jpg"></i></div>
+            <div class="payCode"> THT7LN5zugFiV4Z58KUYXvAnbeFhiuipvm<i class="fas fa-copy"></i></div>
+        </section>
+
+          <section class="m-pesa">
+            <h2 class="donate-app">BINANCE</h2>
+            <div class="donate-img"><img class="donate-img" src="../assets/images/binance.jpg"></i></div>
+            <div class="payCode"> THT7LN5zugFiV4Z58KUYXvAnbeFhiuipvm<i class="fas fa-copy"></i></div>
+            </section>
+
+             <section class="successCopy">COPY SUCCESSFUL<span class="close-copied" onclick="closeCopy()">close</span></section>
+        
+
+</div>
+
+    </div>
+
+     <div id="footer"></div>
+
+    <script>
+     //OPENAPP FUNCTION call donated div on page and close on either second click with changing text content to close or clicking outside div
+
+     function openApp() {
+        const donatedDiv = document.querySelector('.donated');
+        const donateButton = document.querySelector('.donateButton button');
+
+        if (donatedDiv.style.display === 'block') {
+            donatedDiv.style.display = 'none';
+            donateButton.textContent = 'Donate Now';
+        } else {
+            donatedDiv.style.display = 'block';
+            donateButton.textContent = 'Close';
+        }
+        // Close the donated div when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (!donatedDiv.contains(event.target) && event.target !== donateButton) {
+                donatedDiv.style.display = 'none';
+                donateButton.textContent = 'Donate Now';
+            }
+        });
+
+    };
+    //copy function to clipboard for each app separately and alert user of success-copy
+    const copyButtons = document.querySelectorAll('.payCode i');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            
+            const payCode = this.parentElement.textContent.trim();
+            navigator.clipboard.writeText(payCode).then(() => {
+                const successCopy = document.querySelector('.successCopy');
+                successCopy.style.display = 'flex';
+                successCopy.style.justifyContent = 'space-between';
+                successCopy.style.alignItems = 'center';
+
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        });
+    });
+    //close success copy message
+    function closeCopy() {
+        const successCopy = document.querySelector('.successCopy');
+        successCopy.style.display = 'none';
+    }
+//prevent copy success default display and allow it to close clicking outside too
+    window.addEventListener('click', function(event) {
+        const successCopy = document.querySelector('.successCopy');
+        if (!successCopy.contains(event.target) && !event.target.classList.contains('payCode') && !event.target.classList.contains('fa-copy')) {
+            successCopy.style.display = 'none';
+        }
+    });
+    //close copy success  when clicking outside the message
+    window.addEventListener('click', function(event) {
+        const successCopy = document.querySelector('.successCopy');
+        if (!successCopy.contains(event.target)) {
+            successCopy.style.display = 'none';
+        }
+    });
+//copy success fade out animation after 2 seconds
+    function fadeOutCopy() {
+        const successCopy = document.querySelector('.successCopy');
+        successCopy.style.transition = 'opacity 0.5s ease-out';
+        successCopy.style.opacity = '0';
+        setTimeout(() => {
+            successCopy.style.display = 'none';
+            successCopy.style.opacity = '1'; // Reset opacity for next time
+        }, 500);
+    }
+    // Call fadeOutCopy after showing the success message
+    const copyButtonsAll = document.querySelectorAll('.payCode i');
+    copyButtonsAll.forEach(button => {
+        button.addEventListener('click', function() {
+            const payCode = this.parentElement.textContent.trim();
+            navigator.clipboard.writeText(payCode).then(() => {
+                const successCopy = document.querySelector('.successCopy');
+                successCopy.style.display = 'flex';
+                successCopy.style.justifyContent = 'space-between';
+                successCopy.style.alignItems = 'center';
+                setTimeout(fadeOutCopy, 2000); // Fade out after 2 seconds
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        });
+    });
+    
+     
+
+     </script>
+     <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        *
+        {
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+            
+        }
+
+        .abt-btns a
+        {
+            background-color: lightskyblue;
+            color: white;
+            border-radius: 5px;
+            font-size: 32px;
+            position: sticky;
+            top: 10px;}
+              .abt-btns a:hover{
+                transform: rotateY('-5px');
+                background: #00bcd4;
+                box-shadow:  0 10px 20px rgba(0 , 0 , 0 , 0.3);
+              }
+           div .abt-btns{
+            justify-self: center;
+            left: 0px;
+            right: 0px;
+        }
+        body{
+            padding: 50px;
+            margin: 10px ;
+            
+            
+        }
+        .hero
+        {
+            display: flex;
+            flex-wrap: nowrap;
+            flex: 1 1 100%;
+            justify-content: space-between;
+            min-height: 900px;
+            background: linear-gradient(135deg,#f5f7fa,#e4ecf5);
+        }
+        .fake-img
+        {
+      width: 30%;
+        }
+        .fake-img , img{
+            border-radius: 50%;
+            height: 300px;
+            width: 300px;
+
+        }
+        img
+        {
+            animation: float 4s ease-in-out  infinite;
+           padding: 40%;
+           
+        }
+        @keyframes float{
+            0% , 100% {transform: translateY(0);}
+            50%{transform: translateY(-10px);}
+        }
+        .img-info
+        {
+            position: relative;
+            width: 60%;
+            height: auto;
+             display: inline-block;
+             background-color: white;
+            border-radius: 10px;
+            gap: 20px;
+            margin: 20px;
+        }
+        .partners
+        {
+            position: absolute;
+           display: grid;
+           grid-template-columns: repeat(3 , 1fr);
+            justify-content: space-evenly;
+            gap: 3rem;
+            padding: 10px;
+            border-radius: 3px;
+            width: 90%;
+            
+            
+        }
+        .partners section h3{
+            text-align: center;
+        }
+
+        .partners section{
+            text-align: center;
+            justify-content: right;
+           
+        }
+        .developer
+        {
+            cursor:pointer;
+           
+            height: 100%;
+    background-color: rgba(255 , 255 , 255 , 0.08);
+    backdrop-filter: blur(12px) saturate(33.3%);
+    -webkit-backdrop-filter: blur(12px) saturate(33.3%);
+    border-bottom: 1px solid rgba(255 , 255 , 255 , 0.12
+    );
+    box-shadow: 0 8px 32px rgba(0 , 0 , 0 , 0.15);
+        }
+       .developer:hover{
+        transform: translateY(-10px);
+        box-shadow: 0 25px 30px rgba(0 , 0 , 0 , 0.2);
+       }
+       .developer{
+        opacity: 0;
+        transform: translate(30px);
+        animation: fadeUp 0.8s ease forwards;
+       }
+       @keyframes  fadeUp{
+        to{
+            opacity: 1;
+            transform:translateY(0)
+        }
+       }
+       .modal{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        background: rgba(0,0,0,0.6);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s;
+       }
+       .modal.show{
+        opacity: 1;
+        pointer-events: auto;
+
+       }
+       .modal-content
+       {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        width: 400px;
+        transform: translateY(40px);
+        transition: 0.3s;
+       }
+       .modal.show .modal-content
+       {
+        transform: translateY(0);
+       }
+       .close
+       {
+        cursor: pointer;
+        float: right;
+       }
+       @media (max-width: 768px) {
+    body
+    {
+      justify-items: center;
+      overflow-x: none;
+      padding: 2px;
+    }   
+      .hero
+        {
+            display: inline-block;
+          overflow-x: hidden;
+            height: 100vh;
+            background: linear-gradient(135deg,#f5f7fa,#e4ecf5);
+            padding: 10px;
+            width: 96%;
+        }
+        .fake-img
+        {
+      width: 100%;
+        }
+        .fake-img , img{
+            border-radius: 50%;
+            height: 200px;
+            width: 200px;
+            
+
+        }
+         .partners
+        {
+            justify-items: center;
+            position: absolute;
+           display: grid;
+           grid-template-columns: repeat(1 , 1fr);
+            justify-content: space-evenly;
+            gap: 3rem;
+            padding: 5px;
+            padding-top: 60px;
+
+            
+            
+        }
+        .developer
+        {
+            width: 300px;
+            font-weight: 500;
+            border-radius: 3px;
+            margin-inline: 4px;
+        }
+        .modal-content
+        {
+            width: 60%;
+            height: auto;
+            margin-left: 2%;margin-right: 20%;
+        }
+        .abt-btns
+        {
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+        }
+           .abt-btns a
+           {
+            font-size: 20px;
+
+           }
+    }
+    </style>
+</head>
+<body>
+
+    <div class="abt-btns">
+        <a href="../index.html">Home</a>
+        <a href="../pages/contact.html">Contact</a>
+        <a href="#">Skills</a>
+        <a href="#">Back</a>
+    </div>
+    <div class="hero">
+
+        <div class="fake-img"><img src="../assets/images/webdev2.jpg" alt="Developer Image"></div>
+
+         <div class="img-info">
+            <section class="partners">
+
+                <section onclick="openCard('web')" class="developer">
+                    <h3>Web designer</h3>
+                <p>I am a front end developer with an experince of 1year and majored in java , css and html
+                  </p>
+                </section>
+                <section onclick="openCard('marketing')"  class="developer">
+                    <h3>Marketing</h3>
+                    I offer exclusive marketing of products via our website at affordable prices in collaboration with the businesssman or 
+                    sales person at hand.
+                </section>
+
+                <section  onclick="openCard('safaricom')" class="developer">
+                    <h3>Safaricom</h3>
+                    <p>We do safaricom data deliveries at cheap prices , we convert credit to cash at favourable 
+                        rates , we buy bulk credits at favourable prices together with bonga points. Feel free to talk to us.
+                    </p>
+                 </section>
+                 <section onclick="openCard('crypto')" class="developer">
+                    <h3>Dollars deals</h3>
+                    <p>Besides , I pick small crypto assets from OKX , BYBIT , BINANCE at a fair price . So by chance of a dollar deal ere available.</p>
+                 </section>
+            </section>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                   <span class="close" onclick="closeModal()">close</span>
+                   <h2 id="modalTitle"></h2>
+                   <p id="modalText"></p>
+
+                </div>
+
+            </div>
+
+         
+         </div>
+    </div>
+    <script lang="javascript" type="text/javascript">
+        
+        const cardData = {
+            web:{
+                title:"Web Developer" ,
+                text:"I design and develop websites using html , javascript and css. "  +  "I have a year of experience in web development and have worked on various projects, including e-commerce sites, blogs, and portfolio websites. I am proficient in responsive design and ensure that my websites are optimized for performance and user experience."
+            },
+             marketing:{
+                title:"Marketing" ,
+                text:"I offer exclusive marketing of products via our website at affordable prices in collaboration with the businesssman or sales person at hand. I have a proven track record of successfully promoting products and services, utilizing various marketing strategies such as social media marketing, email campaigns, and content creation. My goal is to help businesses reach their target audience and achieve their marketing objectives through effective online promotion.Visit this page to learn more about my marketing services and how I can help you grow your business." + "br"
+                + "I am committed to fostering a vibrant ecosystem of sellers and buyers, driving economic growth and innovation in the online marketplace. With my marketing expertise, I aim to connect businesses with their ideal customers and create mutually beneficial partnerships that contribute to the success of both parties.Contact us to discuss how I can assist you with your marketing needs and help you achieve your business goals."
+            },
+             safaricom:{
+                title:"Safaricom" ,
+                text:"We do safaricom data deliveries at cheap prices , we convert credit to cash at favourable rates , we buy bulk credits at favourable prices together with bonga points. Feel free to talk to us. I have a strong understanding of the Safaricom ecosystem and can provide efficient and reliable services for all your Safaricom needs. Whether you need data deliveries, credit conversions, or bulk credit purchases, I am here to assist you with competitive pricing and excellent customer service." + "br"
+                    + "I am committed to providing a seamless experience for all your Safaricom transactions, ensuring that you receive the best value for your money. With my expertise in Safaricom services, I can help you navigate the various options available and find the most suitable solutions for your needs. Contact me today to learn more about how I can assist you with your Safaricom requirements and provide you with top-notch service." + "br"
+                        + "Feel free to reach out to me for any inquiries or assistance regarding Safaricom services precisely data deliveries , till applications and safaricom Money Market Funds ." + "br" + " I am dedicated to delivering exceptional service and ensuring that your Safaricom transactions at our service provisions are handled with care and professionalism."
+                 
+            },
+
+             crypto:{
+                title:"Dollar Deals" ,
+                text:"Besides , I pick small crypto assets from OKX , BYBIT , BINANCE at a fair price . So by chance of a dollar deal ere available. " + "br"
+                    + "I have a keen eye for identifying promising crypto assets and can provide you with access to exclusive dollar deals on platforms like OKX, BYBIT, and BINANCE. Whether you're looking to invest in cryptocurrencies or simply want to take advantage of favorable market conditions, I am here to help you navigate the world of crypto trading and find the best opportunities for your investment goals." + "br"
+                        + "With my expertise in the crypto market, I can assist you in making informed decisions and maximizing your returns on crypto investments. Contact me today to learn more about the dollar deals available and how I can help you capitalize on the exciting opportunities in the cryptocurrency space."
+            
+            },
+            
+        }
+       
+        function openCard(card){
+            const modal = document.getElementById("modal");
+            document.getElementById("modalTitle").textContent = cardData[card].title;
+           document.getElementById("modalText").textContent = cardData[card].text;
+           modal.classList.add("show")
+        }
+        //close modal
+        function closeModal(){
+document.getElementById("modal").classList.remove("show");
+
+        }
+
+        //close modal on clicking outside
+        
+document.getElementById("modal").addEventListener("click" , (e) =>{
+if(e.target.id === "modal"){
+    closeModal();
+}
+})
+
+    </script>
+    
+</body>
+</html>
